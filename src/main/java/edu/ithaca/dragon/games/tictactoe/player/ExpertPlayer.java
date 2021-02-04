@@ -4,24 +4,26 @@ import edu.ithaca.dragon.games.tictactoe.board.TicTacToeBoard;
 import org.javatuples.Pair;
 
 
-public class ExpertPlayer implements TicTacToePlayer{
+public class ExpertPlayer implements TicTacToePlayer {
+
+
+    private int[][] preferredMoves = {
+            {1, 1}, {0, 0}, {0, 2}, {2, 0}, {2, 2},
+            {0, 1}, {1, 0}, {1, 2}, {2, 1}};
+
     @Override
     public Pair<Integer, Integer> chooseSquare(TicTacToeBoard curBoard, char yourSymbol) {
-        if(curBoard.isSquareOpen(new Pair<>(1,1))){
-            return new Pair<>(1,1);
+        if (curBoard.isSquareOpen(new Pair<>(1, 1))) {
+            return new Pair<>(1, 1);
         }
 
 
-        for (int y=0; y<3; y++){
-            for(int x=0; x<3;x++) {
+        for (int [] move : preferredMoves){
 
-                if (((curBoard.checkForWin('X')) && curBoard.isSquareOpen(new Pair<>(x, y)))){
-                    return new Pair<>(x, y);
-                }
 
-                else if (curBoard.checkForWin('O') || curBoard.isSquareOpen(new Pair<>(x, y))){
-                    return new Pair<>(x, y);
-                }
+            if(curBoard.isSquareOpen(new Pair<>(move[0], move[1]))){
+                return new Pair<>(move[0], move[1]);
+
 
 
             }
