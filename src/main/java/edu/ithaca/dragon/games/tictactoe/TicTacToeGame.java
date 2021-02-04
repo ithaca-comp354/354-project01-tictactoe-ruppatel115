@@ -57,6 +57,7 @@ public class TicTacToeGame {
 
     private void makeMove(TicTacToePlayer player, char symbol){
         Pair<Integer, Integer> square = player.chooseSquare(makeBoardCopy(), symbol);
+
         if(board.isSquareOpen(square)){
             board.setSquare(square, symbol);
         }
